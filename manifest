@@ -5,9 +5,9 @@ LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:gene
 author=Anthony S. Castanza;UCSD-MesirovLab
 commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Genome.fa.gz> -k <kmer> -m <Index.Mode> -o <output.index.name> -l <libdir> -j <job.cpuCount>
 cpuType=any
-description=Salmon indexer for Gencode transcriptomes
+description=Salmon (version 1.4.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
 fileFormat=tar.gz
-job.docker.image=combinelab/salmon\:1.3.0
+job.docker.image=combinelab/salmon\:1.4.0
 language=any
 name=salmon.index
 os=any
