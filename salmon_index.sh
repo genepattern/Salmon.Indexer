@@ -60,7 +60,7 @@ while getopts ":a:t:g:k:m:o:l:j:" opt; do
             echo "-l = $libdir"
             bedtools=`realpath ${libdir}bedtools.static.binary-2.29.2`
             mashmap=`realpath ${libdir}mashmap-2.0`
-
+            gffread=`realpath ${libdir}gffread-0.12.4`
             ;;
         j)
             threads="$OPTARG"
@@ -87,11 +87,8 @@ gunzip -ck $genomefile > genome
 gunzip -ck $gtffile > transcriptome
 
 #gffread version
-# conda install -c bioconda gffread #not installed in container
-#apt-get install -y gffread #not available for Ubuntu Bionic
-apt-get install -y cufflinks #Thanks, I hate it!
 
-gffread transcriptome -w $txpfile -g genome -G -L --w-nocds
+$gffread transcriptome -w $txpfile -g genome -G -L --w-nocds
 
 #$bedtools version
 #awk '$3 ~ /^(transcript)$/' transcriptome > tx_transcriptome
