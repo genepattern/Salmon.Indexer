@@ -20,7 +20,7 @@ kmer=31
 echo "****************"
 echo "*** getDecoy ***"
 echo "****************"
-while getopts ":a:t:g:k:m:o:l:j:" opt; do
+while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
     case $opt in
         a)
             gtffile=`realpath $OPTARG`
@@ -49,6 +49,9 @@ while getopts ":a:t:g:k:m:o:l:j:" opt; do
         m)
             mode="$OPTARG"
             echo "Building $mode decoy index"
+            ;;
+        f)
+            format="$OPTARG"
             ;;
         o)
             outfolder="$OPTARG"
@@ -163,14 +166,18 @@ fi
 
 echo "Indexing gentrome on kmer size: $kmer"
 mkdir -p $outfolder
+
+params=()
+[[ $format == "TRUE" ]] && params+=(--gencode)
+
 salmon index \
       --no-version-check \
       -t gentrome.fa.gz \
       -d decoys.txt \
+      "${params[@]}" \
       -p $threads \
       -i $outfolder \
-      -k $kmer \
-      --gencode
+      -k $kmer ;
 
 # removing extra files
 rm decoys.txt gentrome.fa.gz
