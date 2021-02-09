@@ -5,6 +5,8 @@ set -e
 
 abort()
 {
+rm -rf $outfolder
+
     echo >&2 '
 ***************
 *** ABORTED ***
