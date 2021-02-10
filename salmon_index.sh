@@ -3,6 +3,7 @@
 # Adaped from https://github.com/COMBINE-lab/SalmonTools/blob/master/scripts/generateDecoyTranscriptome.sh
 set -e
 
+trap abort ERR PROF
 abort()
 {
 rm -rf $outfolder
