@@ -105,6 +105,6 @@ p7_value=
 privacy=public
 quality=development
 taskDoc=
-taskType=
+taskType=salmon.index.doc
 userid=acastanza
 version=Update to salmon 1.4.0
