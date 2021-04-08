@@ -3,6 +3,7 @@
 JVMLevel=
 LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:999179\:2.1
 author=Anthony S. Castanza;UCSD-MesirovLab
+categories=preprocess & utilities;rna-seq
 commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Genome.fa.gz> -k <kmer> -m <Index.Mode> -f <Use.Gencode> -o <output.index.name> -l <libdir> -j <job.cpuCount>
 cpuType=any
 description=Salmon (version 1.4.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
