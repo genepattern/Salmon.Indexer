@@ -39,7 +39,7 @@ while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
           else
             txpfile=`realpath $OPTARG`
             echo "-t <Transcriptome fasta> = $txpfile"
-          fi          
+          fi
             ;;
         g)
             genomefile=`realpath $OPTARG`
