@@ -1,4 +1,4 @@
-#salmon.index
+#Salmon.Indexer
 #Mon Feb 01 23:33:01 UTC 2021
 JVMLevel=
 LSID=urn\:lsid\:8080.gpserver.ip-172-31-26-71.ip-172-31-26-71.ec2.internal\:genepatternmodules\:999179\:2.1
@@ -10,7 +10,7 @@ description=Salmon (version 1.4.0) transcriptome indexer.<br>\n\nSee\: <a href\=
 fileFormat=tar.gz
 job.docker.image=combinelab/salmon\:1.4.0
 language=any
-name=salmon.index
+name=Salmon.Indexer
 os=any
 p1_MODE=IN
 p1_TYPE=FILE
@@ -106,6 +106,6 @@ p7_value=
 privacy=public
 quality=development
 taskDoc=
-taskType=salmon.index.pdf
+taskType=Salmon.Indexer.pdf
 userid=acastanza
 version=Update to salmon 1.4.0
