@@ -66,7 +66,7 @@ while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
             echo "-l = $libdir"
             bedtools=`realpath ${libdir}bedtools.static.binary-2.29.2`
             mashmap=`realpath ${libdir}mashmap-2.0`
-            gffread=`realpath ${libdir}gffread-0.12.4`
+            gffread=`realpath ${libdir}gffread-0.12.7`
             ;;
         j)
             threads="$OPTARG"
