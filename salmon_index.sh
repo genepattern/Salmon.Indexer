@@ -84,6 +84,7 @@ if [ -z "$txpfile" ]
 then
 
 echo "Transcriptome fasta not provided, constructing one from GTF and Genome fasta..."
+echo "This fasta file will be included in the Job Results."
 
  txpfile=$(basename $gtffile)
  txpfile=${txpfile/%.GTF.gz}
