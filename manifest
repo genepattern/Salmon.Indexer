@@ -1,15 +1,18 @@
 #Salmon.Indexer
 #Mon Feb 01 23:33:01 UTC 2021
 JVMLevel=
-LSID=urn:lsid:genepattern.org:module.analysis:00419:0.1
+LSID=urn:lsid:genepattern.org:module.analysis:00419:0.2.1
 author=Anthony S. Castanza;UCSD-MesirovLab
 categories=preprocess & utilities;rna-seq
 commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Genome.fa.gz> -k <kmer> -m <Index.Mode> -f <Use.Gencode> -o <output.index.name> -l <libdir> -j <job.cpuCount>
 cpuType=any
 description=Salmon (version 1.5.2) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
 fileFormat=tar.gz
-job.docker.image=combinelab/salmon\:1.5.2
+job.docker.image=genepattern/salmon-indexer:beta
 language=any
+job.memory=32Gb
+job.walltime: 4\:00\:00
+job.cpuCount:8
 name=Salmon.Indexer
 os=any
 p1_MODE=IN
@@ -108,4 +111,4 @@ quality=development
 taskDoc=Salmon.Indexer.pdf
 taskType=rna-seq
 userid=acastanza
-version=Salmon 1.5.2
+version=Salmon 1.5.2 - with GP Docker & Job options
