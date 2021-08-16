@@ -1,0 +1,15 @@
+name: "Salmon.Indexer - Basic smoke test"
+module: Salmon.Indexer
+params:
+    GTF.gz: "input/Drosophila_melanogaster.BDGP6.32.103.gtf.gz"
+    Transcriptome.fa.gz: ""
+    Genome.fa.gz: "input/Drosophila_melanogaster.BDGP6.32.dna.toplevel.fa.gz"
+    kmer: "31"
+    Index.Mode: "Full"
+    Use.Gencode: "true"
+    output.index.name: "<GTF.gz_basename>"
+assertions:
+    jobStatus: success
+        files:
+            "Drosophila_melanogaster.BDGP6.32.103.fa.gz": !!null
+            "Drosophila_melanogaster.BDGP6.32.103.k31.salmon_full_decoy_index.tar.gz": !!null
