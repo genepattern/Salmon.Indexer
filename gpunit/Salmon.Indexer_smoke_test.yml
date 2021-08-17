@@ -2,7 +2,7 @@ name: "Salmon.Indexer - Basic smoke test"
 module: Salmon.Indexer
 params:
     GTF.gz: "input/Drosophila_melanogaster.BDGP6.32.103.gtf.gz"
-    Transcriptome.fa.gz: ""
+    Transcriptome.fa.gz:
     Genome.fa.gz: "input/Drosophila_melanogaster.BDGP6.32.dna.toplevel.fa.gz"
     kmer: "31"
     Index.Mode: "Full"

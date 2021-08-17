@@ -9,6 +9,7 @@ cpuType=any
 description=Salmon (version 1.5.2) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
 fileFormat=tar.gz
 job.docker.image=genepattern/salmon-indexer:beta
+src.repo=https://github.com/genepattern/Salmon.Indexer/tree/v0.4
 language=any
 job.memory=32Gb
 job.walltime: 4\:00\:00
@@ -107,7 +108,7 @@ p7_prefix_when_specified=
 p7_type=java.lang.String
 p7_value=
 privacy=public
-quality=development
+quality=preproduction
 taskDoc=Salmon.Indexer.pdf
 taskType=rna-seq
 userid=acastanza
