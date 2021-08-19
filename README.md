@@ -1,2 +1,3 @@
-# ExampleModule
-This is an example GenePattern module written in Python 3. It has its own module-specific Docker image, based on the GenePattern Python 3 image. This module specific image contains the source files for better reproducibility and portability. It can be used as a template for future modules.
+# Salmon.Indexer
+Salmon (version 1.5.2) transcriptome indexer.\
+See: [The Salmon User Guide](https://salmon.readthedocs.io/en/latest/salmon.html#using-salmon) for detailed usage guidelines

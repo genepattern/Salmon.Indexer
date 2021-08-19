@@ -112,4 +112,4 @@ quality=preproduction
 taskDoc=Salmon.Indexer.pdf
 taskType=rna-seq
 userid=acastanza
-version=Salmon 1.5.2 - with GP Docker & Job options
+version=Salmon 1.5.2 - initial beta release
