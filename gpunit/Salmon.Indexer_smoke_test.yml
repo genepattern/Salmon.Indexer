@@ -10,6 +10,6 @@ params:
     output.index.name: "<GTF.gz_basename>"
 assertions:
     jobStatus: success
-        files:
-            "Drosophila_melanogaster.BDGP6.32.103.fa.gz": !!null
-            "Drosophila_melanogaster.BDGP6.32.103.k31.salmon_full_decoy_index.tar.gz": !!null
+    files:
+        Drosophila_melanogaster.BDGP6.32.103.fa.gz: !!null
+        Drosophila_melanogaster.BDGP6.32.103.k31.salmon_full_decoy_index.tar.gz: !!null
