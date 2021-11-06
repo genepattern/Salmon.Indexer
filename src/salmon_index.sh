@@ -23,11 +23,19 @@ kmer=31
 echo "****************"
 echo "*** getDecoy ***"
 echo "****************"
-while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
+while getopts ":a:t:g:k:m:f:l:j:" opt; do
     case $opt in
         a)
+          if [[ $OPTARG =~ ^[^-]+$ ]];then
             gtffile=`realpath $OPTARG`
             echo "-a <Annotation GTF file> = $gtffile"
+          elif [[ $OPTARG =~ ^-. ]];then
+            gtffile=""
+            let OPTIND=$OPTIND-1
+          else
+            gtffile=`realpath $OPTARG`
+            echo "-t <-a <Annotation GTF file> = $gtffile"
+          fi
             ;;
         t)
           if [[ $OPTARG =~ ^[^-]+$ ]];then
@@ -42,8 +50,16 @@ while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
           fi
             ;;
         g)
+          if [[ $OPTARG =~ ^[^-]+$ ]];then
             genomefile=`realpath $OPTARG`
-            echo "-g <Genome fasta> = $genomefile"
+            echo "-g <Genome fasta = $genomefile"
+          elif [[ $OPTARG =~ ^-. ]];then
+            genomefile=""
+            let OPTIND=$OPTIND-1
+          else
+            txpfile=`realpath $OPTARG`
+            echo "-t <Genome fasta> = $genomefile"
+          fi
             ;;
         k)
             kmer="$OPTARG"
@@ -55,11 +71,6 @@ while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
             ;;
         f)
             format="$OPTARG"
-            ;;
-        o)
-            outfolder="$OPTARG"
-            outfolder=${outfolder/%.gtf}
-            echo "-o <Output files Path> = $outfolder"
             ;;
         l)
             libdir="$OPTARG"
@@ -79,9 +90,24 @@ while getopts ":a:t:g:k:m:f:o:l:j:" opt; do
     esac
 done
 
+if [ ! -z "$gtffile" ]; then
+ outfolder=$(basename $gtffile)
+ outfolder=${outfolder/%.gz}
+ outfolder=${outfolder/%.GTF}
+ outfolder=${outfolder/%.gtf}
+elif [ -z "$gtffile" ] && [ ! -z "$txpfile" ]; then
+ outfolder=$(basename $txpfile)
+ outfolder=${outfolder/%.gz}
+ outfolder=${outfolder/%.fasta}
+ outfolder=${outfolder/%.fa}
+ indexable_fasta=$txpfile
+else
+echo "Either a gtf file and a genome fasta, or a transcriptome fasta must be provided" 
+abort
+fi
+
 ## Construct Transcripts fasta from GTF and Genome Fasta
-if [ -z "$txpfile" ]
-then
+if [ -z "$txpfile" ] && [ ! -z "$genomefile" ];	then
 
 echo "Transcriptome fasta not provided, constructing one from GTF and Genome fasta..."
 echo "This fasta file will be included in the Job Results."
@@ -105,11 +131,14 @@ $gffread transcriptome -w $txpfile -g genome -G -L --w-nocds
 gzip $txpfile
 txpfile=$txpfile.gz
 rm -rf genome genome.fai transcriptome #tx_transcriptome
+
+elif [ -z "$txpfile" ] && [ -z "$genomefile" ]; then
+echo "Unable to construct a transcriptome fasta without a genome fasta provided."
+abort
 fi
 
 ## Construct full decoy index
-if [[ $mode == "full" ]]
-	then
+if [ $mode -qu "full" ] && [ ! -z "$genomefile" ]; then
 echo "Building full decoy index (using entire genome of the organism as the decoy sequence)..."
 # extracting the names of the decoys
 echo "Extracting decoy sequence ids"
@@ -121,8 +150,9 @@ rm decoys.txt.bak
 echo "Making gentrome"
 cat $txpfile $genomefile > gentrome.fa.gz
 
-elif [[ $mode == "partial" ]]
-	then
+indexable_fasta="gentrome.fa"
+
+elif [ $mode -eq "partial" ] && [ ! -z "$genomefile" ]; then
 echo "Building partial decoy index (transcriptome used to hard-mask the genome for decoy sequence)..."
 
 # extracting all the exonic features to mask
@@ -166,6 +196,8 @@ grep ">" decoy.fa | awk '{print substr($1,2); }' > decoys.txt
 echo "Removing temporary files"
 rm exons.bed reference.masked.genome.fa mashmap.out genome_found.sorted.bed genome_found_merged.bed genome_found.fa decoy.fa reference.masked.genome.fa.fai
 
+indexable_fasta="gentrome.fa"
+
 fi
 
 echo "Indexing gentrome on kmer size: $kmer"
@@ -174,9 +206,11 @@ mkdir -p $outfolder
 params=()
 [[ $format == "TRUE" ]] && params+=(--gencode)
 
+# If a genome is available, then index with decoys
+if [ ! -z "$genomefile" ]; then
 salmon index \
       --no-version-check \
-      -t gentrome.fa.gz \
+      -t $indexable_fasta \
       -d decoys.txt \
       "${params[@]}" \
       -p $threads \
@@ -188,6 +222,21 @@ rm decoys.txt gentrome.fa.gz
 
 echo "Compressing Index"
 tar -czvf ${outfolder}.k${kmer}.salmon_${mode}_decoy_index.tar.gz -C $outfolder .
+
+else
+salmon index \
+      --no-version-check \
+      -t $indexable_fasta \
+      "${params[@]}" \
+      -p $threads \
+      -i $outfolder \
+      -k $kmer ;
+
+echo "Compressing Index"
+tar -czvf ${outfolder}.k${kmer}.salmon_index.tar.gz -C $outfolder .
+
+fi
+
 
 echo "Cleaning up"
 rm -rf $outfolder
