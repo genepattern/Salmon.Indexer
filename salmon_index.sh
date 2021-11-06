@@ -100,7 +100,7 @@ elif [ -z "$gtffile" ] && [ ! -z "$txpfile" ]; then
  outfolder=${outfolder/%.gz}
  outfolder=${outfolder/%.fasta}
  outfolder=${outfolder/%.fa}
- indexable_fasta = $txpfile
+ indexable_fasta=$txpfile
 else
 echo "Either a gtf file and a genome fasta, or a transcriptome fasta must be provided" 
 abort
@@ -150,7 +150,7 @@ rm decoys.txt.bak
 echo "Making gentrome"
 cat $txpfile $genomefile > gentrome.fa.gz
 
-indexable_fasta = "gentrome.fa"
+indexable_fasta="gentrome.fa"
 
 elif [ $mode -eq "partial" ] && [ ! -z "$genomefile" ]; then
 echo "Building partial decoy index (transcriptome used to hard-mask the genome for decoy sequence)..."
@@ -196,7 +196,7 @@ grep ">" decoy.fa | awk '{print substr($1,2); }' > decoys.txt
 echo "Removing temporary files"
 rm exons.bed reference.masked.genome.fa mashmap.out genome_found.sorted.bed genome_found_merged.bed genome_found.fa decoy.fa reference.masked.genome.fa.fai
 
-indexable_fasta = "gentrome.fa"
+indexable_fasta="gentrome.fa"
 
 fi
 
