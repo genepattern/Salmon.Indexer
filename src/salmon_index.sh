@@ -150,7 +150,7 @@ rm decoys.txt.bak
 echo "Making gentrome"
 cat $txpfile $genomefile > gentrome.fa.gz
 
-indexable_fasta=gentrome.fa
+indexable_fasta=gentrome.fa.gz
 
 elif [ $mode == "partial" ] && [ ! -z "$genomefile" ]; then
 echo "Building partial decoy index (transcriptome used to hard-mask the genome for decoy sequence)..."
@@ -186,7 +186,7 @@ awk '{a=$0; getline;split(a, b, ":");  r[b[1]] = r[b[1]]""$0} END { for (k in r)
 # concatenating decoys to transcriptome
 echo "Making gentrome"
 cat $txpfile decoy.fa > gentrome.fa
-gzip gentrome.fa
+gzip gentrome.fa.gz
 
 # extracting the names of the decoys
 echo "Extracting decoy sequence ids"
