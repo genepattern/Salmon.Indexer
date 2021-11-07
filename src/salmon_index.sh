@@ -138,7 +138,7 @@ abort
 fi
 
 ## Construct full decoy index
-if [ $mode -eq "full" ] && [ ! -z "$genomefile" ]; then
+if [ $mode == "full" ] && [ ! -z "$genomefile" ]; then
 echo "Building full decoy index (using entire genome of the organism as the decoy sequence)..."
 # extracting the names of the decoys
 echo "Extracting decoy sequence ids"
@@ -152,7 +152,7 @@ cat $txpfile $genomefile > gentrome.fa.gz
 
 indexable_fasta="gentrome.fa"
 
-elif [ $mode -eq "partial" ] && [ ! -z "$genomefile" ]; then
+elif [ $mode == "partial" ] && [ ! -z "$genomefile" ]; then
 echo "Building partial decoy index (transcriptome used to hard-mask the genome for decoy sequence)..."
 
 # extracting all the exonic features to mask
