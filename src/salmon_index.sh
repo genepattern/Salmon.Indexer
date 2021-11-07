@@ -57,7 +57,7 @@ while getopts ":a:t:g:k:m:f:l:j:" opt; do
             genomefile=""
             let OPTIND=$OPTIND-1
           else
-            txpfile=`realpath $OPTARG`
+            genomefile=`realpath $OPTARG`
             echo "-t <Genome fasta> = $genomefile"
           fi
             ;;
@@ -138,7 +138,7 @@ abort
 fi
 
 ## Construct full decoy index
-if [ $mode -qu "full" ] && [ ! -z "$genomefile" ]; then
+if [ $mode -eq "full" ] && [ ! -z "$genomefile" ]; then
 echo "Building full decoy index (using entire genome of the organism as the decoy sequence)..."
 # extracting the names of the decoys
 echo "Extracting decoy sequence ids"
