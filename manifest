@@ -6,7 +6,7 @@ author=Anthony S. Castanza;UCSD-MesirovLab
 categories=preprocess & utilities;rna-seq
 commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Genome.fa.gz> -k <kmer> -m <Index.Mode> -f <Use.Gencode> -l <libdir> -j <job.cpuCount>
 cpuType=any
-description=Salmon (version 1.5.2) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
+description=Salmon (version 1.6.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
 fileFormat=tar.gz
 job.docker.image=genepattern/salmon-indexer:beta
 src.repo=https://github.com/genepattern/Salmon.Indexer/tree/v0.4
@@ -99,4 +99,4 @@ quality=preproduction
 taskDoc=Salmon.Indexer.pdf
 taskType=rna-seq
 userid=acastanza
-version=Salmon 1.5.2 - initial beta release
+version=Salmon 1.6.0 - update beta release
