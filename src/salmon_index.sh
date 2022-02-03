@@ -198,6 +198,11 @@ rm exons.bed reference.masked.genome.fa mashmap.out genome_found.sorted.bed geno
 
 indexable_fasta=gentrome.fa
 
+elif [ -z "$genomefile" ]; then
+echo "Building a decoy-free transcriptome index..."
+
+indexable_fasta=$txpfile
+
 fi
 
 echo "Indexing gentrome on kmer size: $kmer"
