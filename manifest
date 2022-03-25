@@ -9,11 +9,11 @@ cpuType=any
 description=Salmon (version 1.6.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
 fileFormat=tar.gz
 job.docker.image=genepattern/salmon-indexer:beta
-src.repo=https://github.com/genepattern/Salmon.Indexer/tree/v0.4
+src.repo=https://github.com/genepattern/Salmon.Indexer/tree/v0.5
 language=any
 job.memory=32Gb
-job.walltime: 4\:00\:00
-job.cpuCount:8
+job.walltime=4\:00\:00
+job.cpuCount=8
 name=Salmon.Indexer
 os=any
 p1_MODE=IN
@@ -99,4 +99,4 @@ quality=preproduction
 taskDoc=Salmon.Indexer.pdf
 taskType=rna-seq
 userid=acastanza
-version=Salmon 1.6.0 - update beta release
+version=Updated to Salmon 1.6.0 and added support for transcriptome only index
