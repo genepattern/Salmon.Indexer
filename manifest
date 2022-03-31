@@ -8,7 +8,7 @@ commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Gen
 cpuType=any
 description=Salmon (version 1.6.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
 fileFormat=tar.gz
-job.docker.image=genepattern/salmon-indexer:beta
+job.docker.image=genepattern/salmon-indexer:beta_1.6.0
 src.repo=https://github.com/genepattern/Salmon.Indexer/tree/v0.5
 language=any
 job.memory=32Gb
