@@ -72,6 +72,9 @@ while getopts ":a:t:g:k:m:f:l:j:" opt; do
         f)
             format="$OPTARG"
             ;;
+        h)
+            format="$OPTARG"
+            ;;
         l)
             libdir="$OPTARG"
             echo "-l = $libdir"
@@ -210,6 +213,7 @@ mkdir -p $outfolder
 
 params=()
 [[ $format == "TRUE" ]] && params+=(--gencode)
+[[ $noclip == "TRUE" ]] && params+=(--no-clip)
 
 # If a genome is available, then index with decoys
 if [ ! -z "$genomefile" ]; then
