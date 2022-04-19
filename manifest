@@ -1,19 +1,19 @@
 #Salmon.Indexer
-#Mon Feb 01 23:33:01 UTC 2021
+#Tue Apr 19 20:26:52 UTC 2022
 JVMLevel=
-LSID=urn:lsid:genepattern.org:module.analysis:00419:0.2.1
+LSID=urn\:lsid\:genepattern.org\:module.analysis\:00419\:0.6.0
 author=Anthony S. Castanza;UCSD-MesirovLab
 categories=preprocess & utilities;rna-seq
-commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Genome.fa.gz> -k <kmer> -m <Index.Mode> -f <Use.Gencode> -l <libdir> -j <job.cpuCount>
+commandLine=<libdir>salmon_index.sh -a <GTF.gz> -t <Transcriptome.fa.gz> -g <Genome.fa.gz> -k <kmer> -m <Index.Mode> -f <Use.Gencode> -h <No.Clip> -l <libdir> -j <job.cpuCount>
 cpuType=any
-description=Salmon (version 1.6.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
+description=Salmon (version 1.8.0) transcriptome indexer.<br>\n\nSee\: <a href\="https\://salmon.readthedocs.io/en/latest/salmon.html\#using-salmon" target\="_blank">The Salmon User Guide</a>\nfor detailed usage guidelines.
+documentationUrl=
 fileFormat=tar.gz
-job.docker.image=genepattern/salmon-indexer:beta_1.6.0
-src.repo=https://github.com/genepattern/Salmon.Indexer/tree/v0.5
-language=any
+job.cpuCount=8
+job.docker.image=genepattern/salmon-indexer\:beta_1.8.0
 job.memory=32Gb
 job.walltime=4\:00\:00
-job.cpuCount=8
+language=any
 name=Salmon.Indexer
 os=any
 p1_MODE=IN
@@ -94,9 +94,24 @@ p6_prefix=
 p6_prefix_when_specified=
 p6_type=java.lang.String
 p6_value=TRUE\=true;FALSE\=false
+p7_MODE=
+p7_TYPE=TEXT
+p7_default_value=FALSE
+p7_description=Disable homopolymer clipping
+p7_fileFormat=
+p7_flag=-h
+p7_name=No.Clip
+p7_numValues=1..1
+p7_optional=
+p7_prefix=
+p7_prefix_when_specified=
+p7_type=java.lang.String
+p7_value=TRUE\=true;FALSE\=false
 privacy=public
+publicationDate=03/31/2022 15\:39 
 quality=preproduction
+src.repo=https\://github.com/genepattern/Salmon.Indexer/tree/v0.6
 taskDoc=Salmon.Indexer.pdf
-taskType=rna-seq
+taskType=preprocess & utilities
 userid=acastanza
-version=Updated to Salmon 1.6.0 and added support for transcriptome only index
+version=Updated to Salmon 1.8.0 and added support for new no-clip flag
